@@ -7,6 +7,15 @@ public class DemoEntity {
 	private String className;
 	private String tian;
 	
+	public DemoEntity(){
+		
+	}
+	public DemoEntity(String name,int age,String className,String tian){
+		this.name = name;
+		this.age = age;
+		this.className=className;
+		this.tian = tian;
+	}
 	
 	public String getId() {
 		return id;

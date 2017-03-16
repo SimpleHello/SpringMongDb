@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.common.JsonResult;
 import com.demo.entity.DemoEntity;
+import com.demo.entity.DemoEntity01;
 import com.demo.service.DemoService;
 
 @Controller
@@ -53,11 +54,35 @@ public class DemoController {
 		}
 	}
 	
+	@RequestMapping(value = "/getMoreDemoMongDb", method = RequestMethod.POST)
+	public @ResponseBody JsonResult getMoreDemoMongDb(@RequestBody DemoEntity01 entity,HttpServletRequest request) {
+		System.out.println("进入了 此 getDemoMongDb 方法");
+		try {
+			List<DemoEntity01> demoList =demoService.findMore(entity);
+			return new JsonResult(demoList);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
 	@RequestMapping(value = "/insertDemoMongDb", method = RequestMethod.POST)
 	public @ResponseBody JsonResult insertDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
 		System.out.println("进入了 此 insertDemoMongDb 方法");
 		try {
 			demoService.insert(entity);
+			return new JsonResult("insertDemoMongDb 成功");
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
+	@RequestMapping(value = "/insertMoreDemoMongDb", method = RequestMethod.POST)
+	public @ResponseBody JsonResult insertMoreDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 insertDemoMongDb 方法");
+		try {
+			demoService.insertMore();
 			return new JsonResult("insertDemoMongDb 成功");
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.dao.DemoDao;
 import com.demo.entity.DemoEntity;
+import com.demo.entity.DemoEntity01;
 import com.demo.service.DemoService;
 
 @Service
@@ -37,6 +38,18 @@ public class DemoServiceImpl implements DemoService {
 	public void delete(DemoEntity entity) {
 		// TODO Auto-generated method stub
 		demoDao.delete(entity);
+	}
+
+	@Override
+	public void insertMore() {
+		// TODO Auto-generated method stub
+		demoDao.insertMore();
+	}
+
+	@Override
+	public List<DemoEntity01> findMore(DemoEntity01 entity) {
+		// TODO Auto-generated method stub
+		return demoDao.findMore(entity);
 	}
 
 }
