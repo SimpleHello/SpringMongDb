@@ -1,9 +1,19 @@
 package com.demo.entity;
 
 public class DemoEntity {
+	private String id;
 	private String name;
 	private int age;
 	private String className;
+	private String tian;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -21,6 +31,12 @@ public class DemoEntity {
 	}
 	public void setClassName(String className) {
 		this.className = className;
+	}
+	public String getTian() {
+		return tian;
+	}
+	public void setTian(String tian) {
+		this.tian = tian;
 	}
 	
 	

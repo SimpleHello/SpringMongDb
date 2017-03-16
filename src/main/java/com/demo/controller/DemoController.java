@@ -52,4 +52,46 @@ public class DemoController {
 			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
 		}
 	}
+	
+	@RequestMapping(value = "/insertDemoMongDb", method = RequestMethod.POST)
+	public @ResponseBody JsonResult insertDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 insertDemoMongDb 方法");
+		try {
+			demoService.insert(entity);
+			return new JsonResult("insertDemoMongDb 成功");
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
+	@RequestMapping(value = "/updateDemoMongDb", method = RequestMethod.POST)
+	public @ResponseBody JsonResult updateDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 updateDemoMongDb 方法");
+		if(entity==null||entity.getId()==null){
+			return new JsonResult("ID不能为空", false);
+		}
+		try {
+			demoService.update(entity);
+			return new JsonResult("updateDemoMongDb 成功");
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
+	@RequestMapping(value = "/deleteDemoMongDb", method = RequestMethod.POST)
+	public @ResponseBody JsonResult deleteDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 deleteDemoMongDb 方法");
+		if(entity==null||entity.getId()==null){
+			return new JsonResult("ID不能为空", false);
+		}
+		try {
+			demoService.delete(entity);
+			return new JsonResult("deleteDemoMongDb 成功"+entity.getId());
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
 }

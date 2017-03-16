@@ -21,4 +21,22 @@ public class DemoServiceImpl implements DemoService {
 		return demoDao.find(entity);
 	}
 
+	@Override
+	public void insert(DemoEntity entity) {
+		// TODO Auto-generated method stub
+		demoDao.insert(entity);
+	}
+
+	@Override
+	public void update(DemoEntity entity) {
+		// TODO Auto-generated method stub
+		demoDao.update(entity);
+	}
+
+	@Override
+	public void delete(DemoEntity entity) {
+		// TODO Auto-generated method stub
+		demoDao.delete(entity);
+	}
+
 }
