@@ -27,7 +27,7 @@
     <context:annotation-config />
     
     <!-- Spring服务组件扫描(排除@Controller相关组件) -->
-    <context:component-scan base-package="com.kongtrolink.scloud" use-default-filters="false">
+    <context:component-scan base-package="com.demo" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
