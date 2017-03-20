@@ -119,4 +119,15 @@ public class DemoController {
 			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
 		}
 	}
+	
+	@RequestMapping(value = "/findGroupQuery", method = RequestMethod.POST)
+	public @ResponseBody JsonResult findGroupQuery(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 findGroupQuery 方法");
+		try {
+			return new JsonResult(demoService.findGroupQuery());
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
 }

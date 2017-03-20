@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.demo.entity.DemoEntity;
 import com.demo.entity.DemoEntity01;
@@ -17,4 +18,6 @@ public interface DemoService {
 	void update(DemoEntity entity);
 	
 	void delete(DemoEntity entity);
+	
+	List<Map<String, Object>> findGroupQuery();
 }

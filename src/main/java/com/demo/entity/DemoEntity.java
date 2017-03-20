@@ -6,7 +6,7 @@ public class DemoEntity {
 	private int age;
 	private String className;
 	private String tian;
-	
+	private String type;
 	public DemoEntity(){
 		
 	}
@@ -46,6 +46,12 @@ public class DemoEntity {
 	}
 	public void setTian(String tian) {
 		this.tian = tian;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

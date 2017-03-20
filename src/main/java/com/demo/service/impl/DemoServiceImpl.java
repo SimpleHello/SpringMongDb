@@ -1,6 +1,7 @@
 package com.demo.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,12 @@ public class DemoServiceImpl implements DemoService {
 	public List<DemoEntity01> findMore(DemoEntity01 entity) {
 		// TODO Auto-generated method stub
 		return demoDao.findMore(entity);
+	}
+
+	@Override
+	public List<Map<String, Object>> findGroupQuery() {
+		// TODO Auto-generated method stub
+		return demoDao.findGroupQuery();
 	}
 
 }

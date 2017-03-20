@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.entity.DemoEntity;
 import com.demo.entity.DemoEntity01;
+import com.mongodb.BasicDBObject;
 
 @Repository
 public class DemoDao {
@@ -88,5 +91,31 @@ public class DemoDao {
 				new Query(Criteria.where("_id").is(entity.getId())), 
 				DemoEntity.class, "newdemo");
 	}
+	 /**
+     *
+     * @param uniqueCode
+     * @param siteId
+     * @return
+     */
+    public List<Map<String, Object>> findGroupQuery() {
+        AggregationResults<BasicDBObject> result = mongoTemplate.aggregate(
+                Aggregation.newAggregation(
+                		DemoEntity.class,
+                        Aggregation.match(Criteria.where("name").exists(true)
+                                .and("type").exists(true)),
+                        Aggregation.group("name", "type")),
+                "fruit2",
+                BasicDBObject.class);
 
+        List<BasicDBObject> list = result.getMappedResults();
+        List<Map<String, Object>> queryList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            BasicDBObject object = list.get(i);
+            Map<String, Object> map = new HashMap<>();
+            map.put("name", object.getString("name"));
+            map.put("type", object.getString("type"));
+            queryList.add(map);
+        }
+        return queryList;
+    }
 }
