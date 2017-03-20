@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.DemoDao;
+import com.demo.dao.DemoDao2;
 import com.demo.entity.DemoEntity;
 import com.demo.entity.DemoEntity01;
 import com.demo.service.DemoService;
@@ -17,12 +18,21 @@ public class DemoServiceImpl implements DemoService {
 	@Autowired
 	DemoDao demoDao;
 	
+	@Autowired
+	DemoDao2 demoDao2;
+	
 	@Override
 	public List<DemoEntity> find(DemoEntity entity) {
 		// TODO Auto-generated method stub
 		return demoDao.find(entity);
 	}
 
+	@Override
+	public List<DemoEntity> find2(DemoEntity entity) {
+		// TODO Auto-generated method stub
+		return demoDao2.find(entity);
+	}
+	
 	@Override
 	public void insert(DemoEntity entity) {
 		// TODO Auto-generated method stub

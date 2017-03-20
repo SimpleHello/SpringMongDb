@@ -9,6 +9,7 @@ import com.demo.entity.DemoEntity01;
 public interface DemoService {
 	
 	List<DemoEntity> find(DemoEntity entity);
+	List<DemoEntity> find2(DemoEntity entity);
 	
 	List<DemoEntity01> findMore(DemoEntity01 entity);
 	void insert(DemoEntity entity);

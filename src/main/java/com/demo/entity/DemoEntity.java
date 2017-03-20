@@ -1,6 +1,8 @@
 package com.demo.entity;
 
-public class DemoEntity {
+import com.demo.common.IEntity;
+
+public class DemoEntity extends IEntity{
 	private String id;
 	private String name;
 	private int age;

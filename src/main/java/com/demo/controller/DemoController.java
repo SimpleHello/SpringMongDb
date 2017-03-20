@@ -54,6 +54,18 @@ public class DemoController {
 		}
 	}
 	
+	@RequestMapping(value = "/getDemoMongDb2", method = RequestMethod.POST)
+	public @ResponseBody JsonResult getDemoMongDb2(@RequestBody DemoEntity entity,HttpServletRequest request) {
+		System.out.println("进入了 此 getDemoMongDb2 方法");
+		try {
+			List<DemoEntity> demoList =demoService.find2(entity);
+			return new JsonResult(demoList);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
 	@RequestMapping(value = "/getMoreDemoMongDb", method = RequestMethod.POST)
 	public @ResponseBody JsonResult getMoreDemoMongDb(@RequestBody DemoEntity01 entity,HttpServletRequest request) {
 		System.out.println("进入了 此 getDemoMongDb 方法");
