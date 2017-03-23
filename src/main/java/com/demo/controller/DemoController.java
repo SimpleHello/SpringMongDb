@@ -3,7 +3,9 @@ package com.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +31,14 @@ public class DemoController {
 	
 	@RequestMapping(value = "/getDemoMess", method = RequestMethod.POST)
 	public @ResponseBody JsonResult getAlarmCount(HttpServletRequest request) {
-		System.out.println("进入了次方法");
+		System.out.println("getDemoMess 进入了次方法");
 		try {
+			HttpSession session = request.getSession();
+			session.setAttribute("niubibi", "niubibi");
+			ServletContext ContextA =session .getServletContext(); 
+			
+			ContextA.setAttribute("session", session );  
+			
 			List<String> demoList = new ArrayList<String>();
 			for (int i = 0; i < 4; i++) {
 				demoList.add("测试demo" + i);
@@ -41,6 +49,24 @@ public class DemoController {
 			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
 		}
 	}
+	
+	@RequestMapping(value = "/getDemoMessTo", method = RequestMethod.POST)
+	public @ResponseBody JsonResult getDemoMessTo(HttpServletRequest request) {
+		System.out.println("getDemoMessTo 进入了次方法");
+		try {
+			String dl = (String)request.getSession().getAttribute("niu");
+			List<String> demoList = new ArrayList<String>();
+			demoList.add(dl);
+			for (int i = 0; i < 4; i++) {
+				demoList.add("测试demo" + i);
+			}
+			return new JsonResult(demoList);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
 	
 	@RequestMapping(value = "/getDemoMongDb", method = RequestMethod.POST)
 	public @ResponseBody JsonResult getDemoMongDb(@RequestBody DemoEntity entity,HttpServletRequest request) {
