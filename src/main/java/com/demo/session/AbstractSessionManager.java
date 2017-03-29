@@ -30,17 +30,10 @@ public abstract class AbstractSessionManager {
 	
 	
 	public String getSessionIdByCookie(HttpServletRequest request){
-		Cookie[] cookies = request.getCookies();
-		if (cookies == null) {
+		String sid = request.getParameter("SESSIONID");
+		if (sid == null || sid.equals("")) {
 			return null;
 		}
-		for (int i = 0; i < cookies.length; i++) {
-			Cookie cookie = cookies[i];
-			if ("sid".equals(cookie.getName())) {
-				String sid = cookie.getValue();
-				return sid;
-			}
-		}
-		return null;
+		return sid;
 	}
 }

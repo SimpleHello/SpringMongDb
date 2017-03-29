@@ -25,19 +25,24 @@ public class ZkSessionFilter extends AbstractSessionFilter {
           
   
     }  
-  
+
     @Override  
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response) {  
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response) { 
+    	System.out.println("进入了拦截器 方法");
         AbstractSessionManager sessionManager=ZkSessionManager.getInstance();  
         String sid=sessionManager.getSessionIdByCookie((HttpServletRequest)request);  
-        if(sid==null || sid.equals("")){  
+        if(sid==null || sid.equals("")){ 
+//        	  getSessionId((HttpServletRequest)request);
             newSession((HttpServletRequest)request,(HttpServletResponse)response);  
         }else{  
             AbstractSession session=(AbstractSession)sessionManager.getSession(sid);  
             if(session!=null){  
                 session.setLastAccessedTime(new Date().getTime());  
                 ZkClient client=ZkConnectionSingleton.getInstance();  
-                client.writeData(ZkSessionHelper.root+"/"+sid, session.getMeta());  
+                client.writeData(ZkSessionHelper.root+"/"+sid, session.getMeta()); 
+                ZkSessionManager.getInstance().loadSession();
+                AbstractSession sessions=(AbstractSession)ZkSessionManager.getInstance().getSession(sid); 
+                request.setAttribute("session", sessions);
             }else{  
                 newSession((HttpServletRequest)request,(HttpServletResponse)response);  
             }  

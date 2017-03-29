@@ -16,7 +16,8 @@ public class ZkSessionChangeListener extends SessionChangeListener {
     private static final Map<String,Map<String, Set<IZkDataListener>>> attributeDataListeners= new HashMap<String,Map<String, Set<IZkDataListener>>>();  
       
     private void subscribeSessionAttributeChange(List<String> zkSessions){  
-        final ZkClient zkClient=ZkConnectionSingleton.getInstance();  
+        System.out.println("进入了监听器 ZkSessionChangeListener 中的  subscribeSessionAttributeChange 方法");
+    	final ZkClient zkClient=ZkConnectionSingleton.getInstance();  
         for(int i=0,len=zkSessions.size();i<len;i++){  
             String sid=(String)zkSessions.get(i);  
             List<String> zkSessionAttributes=zkClient.getChildren(ZkSessionHelper.root+"/"+sid);  
@@ -36,20 +37,21 @@ public class ZkSessionChangeListener extends SessionChangeListener {
                     if(attributeDataListener!=null){  
                          Iterator<IZkDataListener> it=attributeDataListener.iterator();  
                          while(it.hasNext()){  
-                             zkClient.unsubscribeDataChanges(ZkSessionHelper.root+"/"+sid+"/"+name, it.next());  
+                             zkClient.unsubscribeDataChanges(ZkSessionHelper.root+"/"+sid+"/"+name, it.next()); //解除原有的监听事件 
                          }  
                     }else{  
                         attributeDataListener=new HashSet<IZkDataListener>();  
                         attributeDataListener.add(newDataListener);  
                     }  
                 }  
-                zkClient.subscribeDataChanges(ZkSessionHelper.root+"/"+sid+"/"+name,newDataListener );  
+                zkClient.subscribeDataChanges(ZkSessionHelper.root+"/"+sid+"/"+name,newDataListener );  //绑定新的监听事件
             }  
               
         }  
     }  
       
     private void subscribeSessionDataChange(List<String> zkSessions){  
+    	 System.out.println("进入了监听器  ZkSessionChangeListener 中的  subscribeSessionDataChange 方法");
         final ZkClient zkClient=ZkConnectionSingleton.getInstance();  
         for(int i=0,len=zkSessions.size();i<len;i++){  
             String sid=(String)zkSessions.get(i);  
@@ -73,17 +75,20 @@ public class ZkSessionChangeListener extends SessionChangeListener {
         subscribeSessionAttributeChange(zkSessions);  
     }  
     protected void subscribeSession() {  
+    	System.out.println("进入了监听器ZkSessionChangeListener 中的   subscribeSession 方法");
         final ZkClient zkClient=ZkConnectionSingleton.getInstance();  
         if(!zkClient.exists(ZkSessionHelper.root)){  
             zkClient.createPersistent(ZkSessionHelper.root);  
         }  
-        ZkSessionManager.getInstance().loadSession();  
-        new ZkSessionCleaner().start();  
+        ZkSessionManager.getInstance().loadSession();//加载 session  
+        new ZkSessionCleaner().start();  // 启动清空 过期 session
         List<String> zkSessions=zkClient.getChildren(ZkSessionHelper.root);  
         subscribeSessionDataChange(zkSessions);  
-        zkClient.subscribeChildChanges(ZkSessionHelper.root, new IZkChildListener() {  
+        zkClient.subscribeChildChanges(ZkSessionHelper.root, new IZkChildListener() { 
+        	
             @Override  
             public void handleChildChange(String parentPath, List currentChilds) throws Exception {  
+            	System.out.println("进入了监听器  subscribeSession 方法 里的  IZkChildListener");
                   subscribeSessionDataChange(currentChilds);  
                   //subscribeSessionAttributeChange(currentChilds);  
                    Map sessions=ZkSessionManager.getInstance().getAllSession();  
@@ -115,7 +120,7 @@ public class ZkSessionChangeListener extends SessionChangeListener {
                            ZkSessionManager.getInstance().addSession(session, session.getId());  
                            List<String> keys=zkClient.getChildren(ZkSessionHelper.root+"/"+zkSid);  
                            for(int i=0,size=keys.size();i<size;i++){  
-                               Object val=zkClient.readData(keys.get(i));  
+                               Object val=zkClient.readData(ZkSessionHelper.root+"/"+zkSid+"/"+keys.get(i));  
                                session.localSetAttribute(keys.get(i), val);  
                            }  
                        }  

@@ -3,7 +3,12 @@ package com.demo.session;
 import java.io.Serializable;
 
 public class SessionMetaData implements Serializable{  
-    private long createTime;  
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8084485721698463251L;
+	
+	private long createTime;  
     private String sid;  
     private long lastAccessedTime;  
     private int maxInactiveInterval;  
