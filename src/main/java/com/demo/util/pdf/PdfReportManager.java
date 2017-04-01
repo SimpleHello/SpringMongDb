@@ -243,7 +243,7 @@ public class PdfReportManager {
 				if (image.getWidth() > contentWidth) {
 					image.scalePercent(contentWidth / image.getWidth() * pdfModelImage.getScalePercent());// 依照比例缩放 后期可以设定图片大小
 				}else{
-					image.scalePercent(pdfModelImage.getScalePercent());
+					image.scalePercent(pdfModelImage.getScalePercent()); //暂时 不考虑 小图 放大。只要把  上方的  分子 分母 对调就好
 				}
 				PdfPCell cell = new PdfPCell(image);
 				cell.setHorizontalAlignment(pdfModelImage.getCellAlign());// 水平居中

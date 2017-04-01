@@ -174,7 +174,7 @@ public class PdfReportText {
              * 测试 pdf 图片 比例缩放
              */
             Image jpeg=Image.getInstance("D:\\title.JPG");
-            PdfModelImage pdfModelImage1 = new PdfModelImage("图片缩放测试说明",jpeg,50);
+            PdfModelImage pdfModelImage1 = new PdfModelImage("图片缩放测试说明",jpeg,50,Element.ALIGN_CENTER);
             pdfModelImage1.setCellAlign(Element.ALIGN_CENTER);//图片 水平居中
             manager.addImages(document, pdfModelImage1);
             document.close();

@@ -13,8 +13,7 @@ public class PdfModelPhraseContext extends PdfModel {
 	private String context;// 具体的文本内容
 
 	public PdfModelPhraseContext(String context) {
-		super.setCellAlign(Element.ALIGN_LEFT);
-		this.context = context;
+		this(context,Element.ALIGN_LEFT);//默认 靠左
 	}
 
 	public PdfModelPhraseContext(String context, int alian) {

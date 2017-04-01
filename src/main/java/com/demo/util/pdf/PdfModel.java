@@ -33,8 +33,8 @@ public class PdfModel {
         this.space = 15;
         this.nextPage = true;//默认 开新一页
         this.ifTitle = true;//默认 带标题
-        this.tableAlign = Element.ALIGN_CENTER;
-        this.cellAlign = Element.ALIGN_CENTER;
+        this.tableAlign = Element.ALIGN_CENTER;//居中
+        this.cellAlign = Element.ALIGN_CENTER;//居中
 	}
 	
 	public int getId() {

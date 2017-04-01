@@ -3,6 +3,7 @@ package com.demo.util.pdf;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 
 /**
@@ -20,28 +21,39 @@ public class PdfModelImage extends PdfModel{
 	public PdfModelImage(){}
 	
 	public PdfModelImage(String title,Image images){
-		this(title,images,null,100);
+		this(title,images,"",100,Element.ALIGN_LEFT);
 	}
-	public PdfModelImage(String title,Image images,int scalePercent){
-		this(title,images,null,scalePercent);
+	public PdfModelImage(String title,Image images,int scalePercent,int cellAlian){
+		this(title,images,"",scalePercent,cellAlian);
 	}
 	public PdfModelImage(String title,Image images, String defaultValue){
-		this(title,images,defaultValue,100);
+		this(title,images,defaultValue,100,Element.ALIGN_LEFT);
 	}
-	public PdfModelImage(String title,List<Image> images, String defaultValue){
-		this(title,images,defaultValue,100);
-	}
-	public PdfModelImage(String title,List<Image> images){
-		this(title,images,null,100);
-	}
-	public PdfModelImage(String title,Image images, String defaultValue,int scalePercent){
+	
+	public PdfModelImage(String title,Image images, String defaultValue,int scalePercent,int cellAlian){
 		super.setTitle(title);
+		super.setCellAlign(cellAlian);
 		this.images.add(images);
 		this.defaultValue = defaultValue;
 		this.scalePercent = scalePercent;
 	}
-	public PdfModelImage(String title,List<Image> images, String defaultValue,int scalePercent) {
+	
+	
+	public PdfModelImage(String title,List<Image> images){
+		this(title,images,"",100,Element.ALIGN_LEFT);
+	}
+	
+	public PdfModelImage(String title,List<Image> images, String defaultValue){
+		this(title,images,defaultValue,100,Element.ALIGN_LEFT);
+	}
+	
+	public PdfModelImage(String title,List<Image> images,int scalePercent,int cellAlian){
+		this(title,images,"",scalePercent,cellAlian);
+	}
+	
+	public PdfModelImage(String title,List<Image> images, String defaultValue,int scalePercent,int cellAlian) {
 		super.setTitle(title);
+		super.setCellAlign(cellAlian);
 		this.images = images;
 		this.defaultValue = defaultValue;
 		this.scalePercent = scalePercent;

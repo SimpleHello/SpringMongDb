@@ -15,28 +15,47 @@ public class PdfModelPhrase extends PdfModel{
 	private String defaultValue;//对应 的 默认值.
 	private float indent;//缩进
 	
+
 	
-	public PdfModelPhrase(){
-		this.indent = 30F;
+	public PdfModelPhrase(String title,List<PdfModelPhraseContext>  context) {
+		this(title,context,30F);
 	}
+	
+	public PdfModelPhrase(String title,List<PdfModelPhraseContext>  context, float indent) {
+		this(title,context,false,"",indent);
+	}
+	
 	public PdfModelPhrase(String title,List<PdfModelPhraseContext>  context, Boolean defaultNull, String defaultValue) {
+		this(title,context,defaultNull,defaultValue,30F);
+	}
+	
+	
+	public PdfModelPhrase(String title,List<PdfModelPhraseContext>  context, Boolean defaultNull, String defaultValue,float indent) {
 		super.setTitle(title);
 		this.context = context;
 		this.defaultNull = defaultNull;
 		this.defaultValue = defaultValue;
-		this.indent = 30F;
+		this.indent = indent;
+	}
+	
+	public PdfModelPhrase(String title,PdfModelPhraseContext  context, float indent) {
+		this(title,context,false,"",indent);
 	}
 	
 	public PdfModelPhrase(String title,PdfModelPhraseContext  context, Boolean defaultNull, String defaultValue) {
+		this(title,context,defaultNull,defaultValue,30F);
+	}
+	
+	public PdfModelPhrase(String title,PdfModelPhraseContext  context, Boolean defaultNull, String defaultValue, float indent) {
 		super.setTitle(title);
 		this.context.add(context);
 		this.defaultNull = defaultNull;
 		this.defaultValue = defaultValue;
-		this.indent = 30F;
+		this.indent = indent;
 	}
 	
-	public PdfModelPhrase(String title,PdfModelPhraseContext  context) {
-		this(title,context,false,null);
+	public PdfModelPhrase(String title,PdfModelPhraseContext context) {
+		this(title,context,30F);
 	}
 	
 	
