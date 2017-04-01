@@ -1,5 +1,8 @@
 package com.demo.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.demo.common.IEntity;
 
 public class DemoEntity extends IEntity{
@@ -9,6 +12,9 @@ public class DemoEntity extends IEntity{
 	private String className;
 	private String tian;
 	private String type;
+	private Date ctime;
+	private int score;
+	
 	public DemoEntity(){
 		
 	}
@@ -56,5 +62,24 @@ public class DemoEntity extends IEntity{
 		this.type = type;
 	}
 	
+	
+	
+	public Date getCtime() {
+		return ctime;
+	}
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public void toStringCo(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.print("id:"+this.id+" name:"+this.name+" age:"+this.age+" className:"+this.className
+						+" score:"+this.score+" ctime:"+ sdf.format(this.ctime));
+	}
 	
 }
