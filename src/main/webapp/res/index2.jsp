@@ -15,6 +15,9 @@
 <input type="button" style='font-size: 15px' value="传值zhangsan" onclick="startZhangsan()">
 
 <input type="button" style='font-size: 15px' value="传值 lisi" onclick="startLisi()">
+</br>
+<input type="text" id="mes">
+<input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()">
 
 </body>
 
