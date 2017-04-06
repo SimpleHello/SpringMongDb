@@ -332,6 +332,14 @@
 		  <artifactId>activemq-core</artifactId>
 		  <version>5.7.0</version>
 		</dependency>
+		
+		 <!-- xbean 如<amq:connectionFactory /> -->
+    <dependency>
+        <groupId>org.apache.xbean</groupId>
+        <artifactId>xbean-spring</artifactId>
+        <version>4.5</version>
+    </dependency>
+    
     </dependencies>
 
     <repositories>

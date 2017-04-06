@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demo.activiiMQ.MessageEntity;
 import com.demo.activiiMQ.MessageSender;
 import com.demo.common.JsonResult;
 
@@ -36,13 +37,12 @@ public class AjaxDemo {
 	}
 	
 	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
-	public @ResponseBody JsonResult sendMessage(String name,HttpServletRequest request) {
+	public @ResponseBody JsonResult sendMessage(MessageEntity entity,HttpServletRequest request) {
 		try {
-			System.out.println("接收到参数:"+name);
-			messageSender.sendMessage(name);
+			System.out.println("接收到参数:"+entity);
+			messageSender.sendMessage(entity);
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("name", "消息发送成功");
-			System.out.println("最后结果：传值："+name+" 返回值:"+name);
 			return new JsonResult(map);
 		} catch (Exception e) {
 			return new JsonResult("服务器产生未知异常，请稍后再试。", false);

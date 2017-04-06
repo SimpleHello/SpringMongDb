@@ -20,11 +20,17 @@ function startName(name){
 	
 }
 function sendMessage(){
-	var mes = $("#mes").val();
+	var jobName = $("#jobName").val();
+	var type = $("#type").val();
+	var cron = $("#cron").val();
+	if(type=="30"&&(cron==null||cron=="")){
+		alert("变更时间粒度 必输");
+		return ;
+	}
 	$.ajax({
 		  type: 'POST',
 		  url: "http://10.0.6.135:8080/SpringMongDb/ajax/sendMessage",
-		  data:{"name":mes},
+		  data:{"type":type,"cron":cron,"jobName":jobName},
 		  success: function(result) {
 			  		var res = result.success
 		           if (res == true) {

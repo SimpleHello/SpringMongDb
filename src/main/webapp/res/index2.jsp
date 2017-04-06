@@ -16,7 +16,12 @@
 
 <input type="button" style='font-size: 15px' value="传值 lisi" onclick="startLisi()">
 </br>
-<input type="text" id="mes">
+jobName:TestQuartz2,TestQuartz3</br>
+type:00=新增 ;01=启动 10=停止 11=删除 状态的修改。 30 = 时间表达式的修改</br>
+
+jobName:<input type="text" id="jobName">
+type:<input type="text" id="type">
+时间粒度:<input type="text" id="cron">
 <input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()">
 
 </body>
