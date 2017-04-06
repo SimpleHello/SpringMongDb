@@ -78,7 +78,7 @@ public class DemoEntity extends IEntity{
 	}
 	public void toStringCo(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.print("id:"+this.id+" name:"+this.name+" age:"+this.age+" className:"+this.className
+		System.out.println("id:"+this.id+" name:"+this.name+" age:"+this.age+" className:"+this.className
 						+" score:"+this.score+" ctime:"+ sdf.format(this.ctime));
 	}
 	
