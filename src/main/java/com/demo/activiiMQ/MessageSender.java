@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
-import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
@@ -15,7 +14,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.common.json.JSON;
+import com.alibaba.fastjson.JSON;
 
 @Service
 public class MessageSender {
@@ -52,8 +51,8 @@ public class MessageSender {
                 TextMessage outMessage = session.createTextMessage();  
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 entity.setId(UUID.randomUUID().toString());
-                String message = JSON.json(entity);
-                outMessage.setText(sdf.format(new Date()) + "  web 现在 给 客户端 发送 消息:"+message);  
+                String message = JSON.toJSONString(entity);
+                outMessage.setText(message);  
                 sender.send(outMessage);  
                 session.commit();  
   
