@@ -28,7 +28,7 @@ public class MessageSender {
 	@Value("${activeMQ.password}")
     private String password;
 	
-	@Value("${activeMQ.quene}")
+	@Value("${activeMQ.sendQuartzQuene}")
     private String quene;
 	
 	public void sendMessage(MessageEntity entity){
