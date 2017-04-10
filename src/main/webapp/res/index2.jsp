@@ -38,6 +38,7 @@
 	<option value="30">修改时间粒度</option>
 </select>
 
+
 测试时间粒度:
 <select id="cron">
 	<option value=""> - </option>
@@ -47,6 +48,7 @@
 	<option value="0/7 * * * * ?">7秒 执行一次</option>
 	<option value="0/9 * * * * ?">9秒 执行一次</option>
 </select>
+
 <input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()">
 
 </body>
