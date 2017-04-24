@@ -4,7 +4,7 @@
        xmlns:mongo="http://www.springframework.org/schema/data/mongo" 
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans 
-            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
             http://www.springframework.org/schema/data/mongo 
             http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
     

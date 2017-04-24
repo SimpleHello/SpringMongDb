@@ -6,6 +6,10 @@ import java.util.Date;
 import com.demo.common.IEntity;
 
 public class DemoEntity extends IEntity{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8289172869123078238L;
 	private String id;
 	private String name;
 	private int age;
@@ -77,7 +81,7 @@ public class DemoEntity extends IEntity{
 		this.score = score;
 	}
 	public void toStringCo(){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("id:"+this.id+" name:"+this.name+" age:"+this.age+" className:"+this.className
 						+" score:"+this.score+" ctime:"+ sdf.format(this.ctime));
 	}
