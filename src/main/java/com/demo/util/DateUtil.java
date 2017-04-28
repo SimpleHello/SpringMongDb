@@ -11,7 +11,6 @@ package com.demo.util;
  ******************************************************
  */
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,51 +22,51 @@ import java.util.logging.Logger;
  * @author Mosaico
  */
 public class DateUtil {
-    
-    private static DateUtil instance;
-    private final SimpleDateFormat defaultFormat;
-    
-    public static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    
-    private DateUtil() {
-	defaultFormat = new SimpleDateFormat(DEFAULT_PATTERN);
-    }
-    
-    public static DateUtil getInstance() {
-	if (instance == null) {
-	    instance = new DateUtil();
+
+	private static DateUtil instance;
+	private final SimpleDateFormat defaultFormat;
+
+	public static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+	private DateUtil() {
+		defaultFormat = new SimpleDateFormat(DEFAULT_PATTERN);
 	}
-	return instance;
-    }
-    
-    public String format(Date date) {
-	return defaultFormat.format(date);
-    }
-    
-    public String format(Date date, String pattern) {
-	SimpleDateFormat format = new SimpleDateFormat(pattern);
-	return format.format(date);
-    }
-    
-    public Date parse(String resource) {
-	Date date = null;
-	try {
-	    date = defaultFormat.parse(resource);
-	} catch (ParseException ex) {
-	    Logger.getLogger(DateUtil.class.getName()).log(Level.SEVERE, null, ex);
+
+	public static DateUtil getInstance() {
+		if (instance == null) {
+			instance = new DateUtil();
+		}
+		return instance;
 	}
-	return date;
-    }
-    
-    public Date parse(String resource, String pattern) {
-	SimpleDateFormat format = new SimpleDateFormat(pattern);
-	Date date = null;
-	try {
-	    date = format.parse(resource);
-	} catch (ParseException ex) {
-	    Logger.getLogger(DateUtil.class.getName()).log(Level.SEVERE, null, ex);
+
+	public String format(Date date) {
+		return defaultFormat.format(date);
 	}
-	return date;
-    }
-    
+
+	public String format(Date date, String pattern) {
+		SimpleDateFormat format = new SimpleDateFormat(pattern);
+		return format.format(date);
+	}
+
+	public Date parse(String resource) {
+		Date date = null;
+		try {
+			date = defaultFormat.parse(resource);
+		} catch (ParseException ex) {
+			Logger.getLogger(DateUtil.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return date;
+	}
+
+	public Date parse(String resource, String pattern) {
+		SimpleDateFormat format = new SimpleDateFormat(pattern);
+		Date date = null;
+		try {
+			date = format.parse(resource);
+		} catch (ParseException ex) {
+			Logger.getLogger(DateUtil.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return date;
+	}
+
 }
