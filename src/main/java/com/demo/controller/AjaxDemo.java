@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.awt.Font;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.demo.activiiMQ.MessageEntity;
 import com.demo.activiiMQ.MessageSender;
 import com.demo.common.JsonResult;
+import com.demo.util.png.FontImage;
 
 @Controller
 @RequestMapping(value = "/ajax", method = RequestMethod.POST)
@@ -36,6 +39,19 @@ public class AjaxDemo {
 		}
 	}
 	
+	@RequestMapping(value = "/createPng", method = RequestMethod.POST)
+	public @ResponseBody JsonResult createPng(HttpServletRequest request) {
+		try {
+			String path =getFilePath();
+			FontImage.createImage("请A1003到3号窗口", new Font("宋体", Font.BOLD, 30), new File(path), 4096, 64);
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("result", "创建成功");
+			return new JsonResult(map);
+		} catch (Exception e) {
+			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
+		}
+	}
+	
 	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
 	public @ResponseBody JsonResult sendMessage(MessageEntity entity,HttpServletRequest request) {
 		try {
@@ -47,6 +63,17 @@ public class AjaxDemo {
 		} catch (Exception e) {
 			return new JsonResult("服务器产生未知异常，请稍后再试。", false);
 		}
+	}
+	
+	private String getFilePath(){
+		String file = "E:\\111\\aaa.png";
+		Map<String, String> map = System.getenv();
+		String os = map.get("OS");
+		System.out.println("当前系统："+os);
+		if(os==null||!os.contains("Windows")){
+			file="/home/data/aaa.png";
+		}
+		return file;
 	}
 	
 }
