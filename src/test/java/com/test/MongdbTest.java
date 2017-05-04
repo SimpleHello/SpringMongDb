@@ -2,6 +2,7 @@ package com.test;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.text.ParseException;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -28,6 +30,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.demo.entity.DemoEntity;
 import com.demo.entity.JobEntity;
 import com.demo.entity.JobRunningLogEntity;
+import com.demo.entity.test.Product;
+import com.demo.entity.test.ZipInfo;
 import com.mongodb.BasicDBObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -114,6 +118,26 @@ public class MongdbTest {
 			System.out.println(" name:" + object.getString("name1") + " ctime:" + sdf.format(object.getDate("niuctime"))
 					+ " count:" + object.getInt("count"));
 		}
+	}
+
+	@Test
+	public void groupMes2() {
+		try {
+			TypedAggregation<ZipInfo> agg =  Aggregation.newAggregation(ZipInfo.class,
+					group("city","state").sum("pop").as("xxas"), 
+					group("city","xxas").count().as("pop")
+//					project("pop").and("city").previousOperation()
+				);
+			
+			AggregationResults<ZipInfo> result = mongoTemplate.aggregate(agg,"student07", ZipInfo.class);
+			List<ZipInfo> list = result.getMappedResults();
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println(list.get(i).toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Test

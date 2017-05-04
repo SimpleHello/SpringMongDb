@@ -1,15 +1,10 @@
 package com.demo.entity.test;
 
-import org.springframework.data.mongodb.core.mapping.Field;
-
 public class ZipInfo {
 	private String id;
 	private String city;
 	private String state;
-	@Field("pop")
-	private int population;
-	@Field("loc")
-	private double[] location;
+	private int pop;
 	
 	
 	public String getId() {
@@ -30,18 +25,17 @@ public class ZipInfo {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getPopulation() {
-		return population;
+	public int getPop() {
+		return pop;
 	}
-	public void setPopulation(int population) {
-		this.population = population;
+	public void setPop(int pop) {
+		this.pop = pop;
 	}
-	public double[] getLocation() {
-		return location;
+	@Override
+	public String toString() {
+		return "ZipInfo [id=" + id + ", city=" + city + ", state=" + state + ", pop=" + pop + "]";
 	}
-	public void setLocation(double[] location) {
-		this.location = location;
-	}
+
 	
 	
 }
