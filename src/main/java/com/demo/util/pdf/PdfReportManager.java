@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.demo.entity.Alarm;
 import com.demo.util.DateUtil;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -329,7 +330,8 @@ public class PdfReportManager {
 		return null;
 	}
 
-	public Object getFieldValue(Object o, String fields) {
+
+	public  Object getFieldValue(Object o, String fields) {
 		try {
 			Class<?> clazz = o.getClass();
 			Field field1 = clazz.getDeclaredField(fields);

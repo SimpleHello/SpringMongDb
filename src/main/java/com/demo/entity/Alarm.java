@@ -54,7 +54,8 @@ public class Alarm implements Serializable{
         this._id = _id;
     }
 
-    public String getState() {
+
+	public String getState() {
         return state;
     }
 
@@ -86,15 +87,16 @@ public class Alarm implements Serializable{
         this.details = details;
     }
 
+   
     public Date gettReport() {
-        return tReport;
-    }
+		return tReport;
+	}
 
-    public void settReport(Date tReport) {
-        this.tReport = tReport;
-    }
-    
-    public void settRecord(String tRecord) {
+	public void settReport(Date tReport) {
+		this.tReport = tReport;
+	}
+
+	public void settRecord(String tRecord) {
 	this.tReport = DateUtil.getInstance().parse(tRecord);
     }
 
