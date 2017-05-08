@@ -2,12 +2,14 @@ package com.test;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.bind;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -108,6 +110,36 @@ public class ScloudTest {
 
 	@Test
 	public void getAlarmGroup2() {
+		List<String> li = new ArrayList<String>();
+		li.add("11");
+		li.add("33");
+		Criteria criteria = Criteria.where("state").is("待处理").and("first").in(li);
+		try{
+			TypedAggregation<Alarm> agg = newAggregation(Alarm.class,
+					project("level","signal","device","site","siteTier","tierCode","state")
+					   .andExpression("substr(tierCode,0,2)").as("first")
+					   .andExpression("substr(tierCode,0,4)").as("second"),
+					match(criteria),
+					limit(10)
+
+			);
+			AggregationResults<BasicDBObject> result = mongoTemplate.aggregate(agg, "yytdbattery_alarm", BasicDBObject.class);
+			List<BasicDBObject> list = result.getMappedResults();
+			System.out.println("-----------------------------");
+			for (int i = 0; i < list.size(); i++) {
+				BasicDBObject object = list.get(i);
+				System.out.println(object);
+			}
+			System.out.println("-----------------------------");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	
+	@Test
+	public void getAlarmGroup3() {
 		TypedAggregation<Product> agg = newAggregation(Product.class,
 				project("name", "netPrice").andExpression("netPrice + 1").as("netPricePlus1")
 						.andExpression("netPrice - 1").as("netPriceMinus1").andExpression("netPrice / 2")
@@ -175,7 +207,7 @@ public class ScloudTest {
 		Date tStart = (query.gettStart() == null) ? null : new Date(query.gettStart());
 		Date tEnd = (query.gettEnd() == null) ? new Date() : new Date(query.gettEnd());
 
-		Criteria criteria = Criteria.where("shield").ne(true);
+		Criteria criteria = Criteria.where("shield").ne(false);
 		if (siteIds != null && !siteIds.isEmpty()) {
 			criteria.and("site.strId").in(siteIds);
 		}
