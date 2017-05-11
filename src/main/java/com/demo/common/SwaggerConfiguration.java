@@ -18,7 +18,7 @@ public class SwaggerConfiguration {
     @Bean  
     public Docket api() {  
     	Docket doctor = new Docket(DocumentationType.SWAGGER_2) 
-    			.tags(new Tag("key值", "value值"),getTags())
+    			.tags(new Tag("key值", "value值"),SwaggerTag.getTags())
                 .select()  
                 .apis(RequestHandlerSelectors.any())  
                 .paths(PathSelectors.any())  
@@ -28,13 +28,7 @@ public class SwaggerConfiguration {
         return doctor;  
     }  
     
-    private Tag[] getTags() {
-        Tag[] tags = {
-            new Tag("app", "测试相关的API"),
-            new Tag("dog", "狗相关")
-        };
-        return tags;
-    }
+    
     
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
