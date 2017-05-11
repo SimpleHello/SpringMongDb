@@ -19,14 +19,19 @@ import com.demo.activiiMQ.MessageSender;
 import com.demo.common.JsonResult;
 import com.demo.util.png.FontImage;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Controller
 @RequestMapping(value = "/ajax", method = RequestMethod.POST)
+@Api(value = "AjaxDemo", description = "用户相关api")
 public class AjaxDemo {
 	
 	@Autowired
 	MessageSender messageSender;
 	
 	@RequestMapping(value = "/getSomeAjax/{name}", method = RequestMethod.POST)
+	@ApiOperation(nickname = "AjaxDemo-getSomeAjax", value = "测试1", notes = "测试111")  
 	public @ResponseBody JsonResult getSomeAjax(@PathVariable String name,HttpServletRequest request) {
 		try {
 			System.out.println("接收到参数:"+name);
@@ -40,6 +45,7 @@ public class AjaxDemo {
 	}
 	
 	@RequestMapping(value = "/createPng", method = RequestMethod.POST)
+	@ApiOperation(nickname = "AjaxDemo-createPng", value = "测试2", notes = "测试222")
 	public @ResponseBody JsonResult createPng(HttpServletRequest request) {
 		try {
 			String path =getFilePath();
@@ -53,10 +59,11 @@ public class AjaxDemo {
 	}
 	
 	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+	@ApiOperation(nickname = "AjaxDemo-sendMessage", value = "测试3", notes = "测试333")
 	public @ResponseBody JsonResult sendMessage(MessageEntity entity,HttpServletRequest request) {
 		try {
 			System.out.println("接收到参数:"+entity);
-			messageSender.sendMessage(entity);
+//			messageSender.sendMessage(entity);
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("name", "消息发送成功");
 			return new JsonResult(map);
