@@ -16,16 +16,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {  
     @Bean  
     public Docket api() {  
-        return new Docket(DocumentationType.SWAGGER_2)  
+    	Docket doctor = new Docket(DocumentationType.SWAGGER_2)  
                 .select()  
                 .apis(RequestHandlerSelectors.any())  
                 .paths(PathSelectors.any())  
-                .build();  
+                .build();
+    	
+    	doctor.apiInfo(apiInfo());
+        return doctor;  
     }  
     
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .title("测试用API管理项目")
                 .description("api根地址：http://localhost:8081/SpringMongDb/")
                 .termsOfServiceUrl("https://xiaomo.info/")
                 .version("1.0")
