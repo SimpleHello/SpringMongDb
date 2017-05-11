@@ -21,8 +21,11 @@ import com.demo.entity.DemoEntity;
 import com.demo.entity.DemoEntity01;
 import com.demo.service.DemoService;
 
+import io.swagger.annotations.Api;
+
 @Controller
 @RequestMapping(value = "/simpleDemo", method = RequestMethod.POST)
+@Api(value = "DemoController",tags={"app"})
 public class DemoController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
 	

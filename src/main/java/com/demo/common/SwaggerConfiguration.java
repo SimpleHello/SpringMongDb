@@ -7,6 +7,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -16,7 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {  
     @Bean  
     public Docket api() {  
-    	Docket doctor = new Docket(DocumentationType.SWAGGER_2)  
+    	Docket doctor = new Docket(DocumentationType.SWAGGER_2) 
+    			.tags(new Tag("key值", "value值"),getTags())
                 .select()  
                 .apis(RequestHandlerSelectors.any())  
                 .paths(PathSelectors.any())  
@@ -25,6 +27,14 @@ public class SwaggerConfiguration {
     	doctor.apiInfo(apiInfo());
         return doctor;  
     }  
+    
+    private Tag[] getTags() {
+        Tag[] tags = {
+            new Tag("app", "测试相关的API"),
+            new Tag("dog", "狗相关")
+        };
+        return tags;
+    }
     
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
