@@ -1,4 +1,4 @@
-var Urlhead = "http://10.0.6.135:8081/SpringMongDb/"
+var Urlhead = "http://localhost:8081/mongdb01/"
 var Url = {
 		test:{
 			createPng:Urlhead+"ajax/createPng"

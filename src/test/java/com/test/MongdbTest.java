@@ -2,7 +2,6 @@ package com.test;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.text.ParseException;
@@ -26,15 +25,16 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.demo.entity.DemoEntity;
 import com.demo.entity.JobEntity;
 import com.demo.entity.JobRunningLogEntity;
-import com.demo.entity.test.Product;
 import com.demo.entity.test.ZipInfo;
 import com.mongodb.BasicDBObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration(locations = "classpath:conf/applicationContext.xml")
 public class MongdbTest {
 
@@ -54,12 +54,8 @@ public class MongdbTest {
 	@Test
 	public void checkInit() {
 		Criteria criteria = Criteria.where("age").gt(20);
-		Query query = new Query();
-		query.addCriteria(criteria);
-		List<DemoEntity> demoList = mongoTemplate.findAll(DemoEntity.class, "student01");
-		for (DemoEntity en : demoList) {
-			en.toStringCo();
-		}
+		boolean fa = criteria.equals("age");
+		System.out.println(fa);
 	}
 
 	@Test

@@ -3,18 +3,18 @@ package com.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.common.JsonResult;
-import com.demo.session.AbstractSession;
 import com.demo.session.ZkSession;
-import com.demo.session.ZkSessionManager;
+
+import io.swagger.annotations.Api;
 
 @Controller
 @RequestMapping(value = "/dbsession", method = RequestMethod.POST)
+@Api(value="dog",tags={"dog"})
 public class SessionController {
 
 	@RequestMapping(value = "/setSession", method = RequestMethod.POST)

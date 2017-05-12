@@ -8,6 +8,7 @@
 
 <script src="jquery/jquery-1.9.1.js" type="text/javascript" ></script>
 <script src="index.js" type="text/javascript" ></script>
+<script src="js/url.js" type="text/javascript" ></script>
 <style type="text/css">
 	p.normal {font-style:normal}
 	p.italic {font-style:italic}

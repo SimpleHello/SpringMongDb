@@ -23,7 +23,7 @@
     <!-- 扫描@Controller组件 -->
     <context:component-scan base-package="com.demo" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect" />
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <!-- 设置Spring MVC不扫描@Service和@Repository组件 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
