@@ -53,9 +53,18 @@ public class MongdbTest {
 
 	@Test
 	public void checkInit() {
-		Criteria criteria = Criteria.where("age").gt(20);
-		boolean fa = criteria.equals("age");
-		System.out.println(fa);
+		try {
+			int[] ages = {22};
+			Criteria criteria = Criteria.where("age").in(ages);
+			Criteria criteria2 = Criteria.where("age").in(ages);
+			criteria.orOperator(criteria2);
+			Query query = new Query(criteria);
+			DemoEntity entity = mongoTemplate.findOne(query, DemoEntity.class,"student01");
+			System.out.println("111");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
@@ -79,7 +88,7 @@ public class MongdbTest {
 		String[] names = { "zhangsan", "lisi", "wangwu" };
 		int[] ages = { 21, 18, 25 };
 		String[] classNames = { "1class", "2class", "3class" };
-		for (int j = 0; j < 1; j++) {
+		for (int j = 0; j < 3; j++) {
 			String name = names[j];
 			int age = ages[j];
 			String className = classNames[j];

@@ -9,7 +9,7 @@ function startZhangsan(){
 function startName(name){
 	$.ajax({
 		  type: 'POST',
-		  url: Urlhead+"ajax/getSomeAjax/"+name,
+		  url: Urlhead+"appAjax/getSomeAjax/"+name,
 		  success: function(result) {
 		           if (result == "success") {
 			              alert(name+":"+result.name);
@@ -29,7 +29,7 @@ function sendMessage(){
 	}
 	$.ajax({
 		  type: 'POST',
-		  url: Urlhead+"ajax/sendMessage",
+		  url: Urlhead+"appAjax/sendMessage",
 		  data:{"type":type,"cron":cron,"jobName":jobName},
 		  success: function(result) {
 			  		var res = result.success

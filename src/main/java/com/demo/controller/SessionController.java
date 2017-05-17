@@ -14,7 +14,7 @@ import io.swagger.annotations.Api;
 
 @Controller
 @RequestMapping(value = "/dbsession", method = RequestMethod.POST)
-@Api(value="dog",tags={"dog"})
+@Api(value="other",tags={"other"})
 public class SessionController {
 
 	@RequestMapping(value = "/setSession", method = RequestMethod.POST)
