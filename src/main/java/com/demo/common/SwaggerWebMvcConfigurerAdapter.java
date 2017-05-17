@@ -1,6 +1,5 @@
 package com.demo.common;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +18,7 @@ import com.demo.interceptor.SwaggerInterceptor;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.demo.controller", "com.demo.app" })
+@ComponentScan(basePackages = { "com.demo.controller", "com.demo.app","com.demo.websocket" })
 public class SwaggerWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
 	@Bean
