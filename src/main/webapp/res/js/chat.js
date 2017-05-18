@@ -1,12 +1,12 @@
 var init = function() {
-	var url = "ws://192.168.1.129:61614/stomp";
+	var url = "ws://10.0.6.135:61614/stomp";
 	var login = "admin";
 	var passcode = "admin";
 	// 这个就是监听的队列
-	destination = "xxxxx";
+	destination = "quartzReceiveQuene";
 	sendQueue = "";
 	client = Stomp.client(url);
-	userName = "wang";
+	userName = "mag";
 	// this allows to display debug logs directly on the web page
 	client.debug = function(str) {
 		$("#debug").append(document.createTextNode(str + "\n"));
