@@ -1,6 +1,5 @@
 package com.demo.entity.test1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +15,12 @@ public class Assort {
 			list.add("moon-"+i);//10-15
 		}
 		for(int i =1;i<4;i++){
-			list.add("sun-"+i);//
+			list.add("sun-"+i);//16-18
 		}
-		list.add("star-1");//0
-		list.add("middle");//1
-		list.add("high");//2
-		list.add("s");
+		list.add("Diamond");//19
+		list.add("s");//20
+		list.add("ss");//21
+		list.add("sss");//22
 		return list;
 	}
 	public static List<String> getlistLocat(){

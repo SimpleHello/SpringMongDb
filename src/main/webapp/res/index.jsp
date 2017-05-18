@@ -26,7 +26,7 @@
 
 	//判断当前浏览器是否支持WebSocket  
 	if ('WebSocket' in window) {
-		websocket = new WebSocket("ws://localhost:8081/mongdb01/websocket");
+		websocket = new WebSocket("ws://localhost:61614");
 	} else {
 		alert('Not support websocket')
 	}
