@@ -39,7 +39,8 @@
     <!-- Imports user-definded @Repository beans that process database options -->
     <!--<bean id="mongoConfig" class="com.kongtrolink.scloud.mongo.config.MongoConfig" />-->
     <import resource="mongo.xml" />
-    
+    <import resource="dubbo.xml" />
+    <import resource="spring-shiro.xml" />
     <aop:aspectj-autoproxy/>
     
 </beans>

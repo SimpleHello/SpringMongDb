@@ -18,7 +18,7 @@ import com.demo.util.export.XlsExporter;
 import io.swagger.annotations.Api;
 
 @Controller
-@RequestMapping(value = "/exportDemo", method = RequestMethod.POST)
+@RequestMapping(value = "/login", method = RequestMethod.POST)
 @Api(value = "exportDemo2", description = "用户相关api")
 public class ExportDemo2 extends ExportController{
 	
@@ -50,5 +50,10 @@ public class ExportDemo2 extends ExportController{
 		}, properiesName, headsName, DemoEntity.class, title);
 	}
 	
+	@RequestMapping(value = "/loginsubmit.do", method = RequestMethod.GET)
+	public void loginsubmit(HttpServletRequest request, HttpServletResponse response) {
+		String title = "告警过滤规则";
+		System.out.println("登录成功!:"+title);
+	}
 	
 }

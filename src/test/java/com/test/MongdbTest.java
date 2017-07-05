@@ -27,10 +27,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.entity.DemoEntity;
 import com.demo.entity.JobEntity;
 import com.demo.entity.JobRunningLogEntity;
 import com.demo.entity.test.ZipInfo;
+import com.kongtrolink.scloud.core.constant.CollectionSuffix;
+import com.kongtrolink.scloud.core.entity.camera.Camera;
 import com.mongodb.BasicDBObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -66,7 +70,23 @@ public class MongdbTest {
 		}
 		
 	}
-
+	@Test
+	public void findDeviceList() {
+		String uniqueCode = "yytdbattery";
+        try {
+        	// 默认条件（无实际作用）
+            Criteria criteria = Criteria.where("typeCode").is("100");
+            Query query = new Query(criteria);
+            // 根据设备类型升序排序
+            List<Camera> list = mongoTemplate.find(query, Camera.class, uniqueCode + CollectionSuffix.DEVICE);
+            String strJson21 = JSONObject.toJSONString(list, SerializerFeature.WriteMapNullValue);
+			System.out.println(strJson21);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+    }
+	
 	@Test
 	public void checkInit222() {
 		try {
