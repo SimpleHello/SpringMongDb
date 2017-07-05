@@ -31,6 +31,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     
     <!-- 配置字符集过滤器 -->
     <filter>
@@ -50,14 +51,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
       
-   <filter>
-	<filter-name>shiroFilter</filter-name>
-	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-  </filter>
-  <filter-mapping>
-	<filter-name>shiroFilter</filter-name>
-	<url-pattern>*.do</url-pattern>
-  </filter-mapping>
+
 
     <!-- 配置前端处理器：接口请求、进行请求转发的框架（despatcher-servlet.xml） -->
     <servlet>
@@ -75,10 +69,20 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
   
+      
+       <filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+     </filter>
+    <filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+    </filter-mapping>
+  
     <jsp-config>
         <taglib>
             <taglib-uri>/auth-tags</taglib-uri>
-            <taglib-location>/WEB-INF/tlds/authTag.tld</taglib-location>
+            <taglib-location>/WEB-INF/autgTag.tld</taglib-location>
         </taglib>
     </jsp-config>
     

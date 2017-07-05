@@ -12,7 +12,7 @@ public class User extends IEntity{
 	 */
 	private static final long serialVersionUID = -1146628034025928299L;
 	
-	private String accountName ;
+	private String userame ;
     private String password ;
     private String nickName ;
     private String mobilePhone ;
@@ -22,11 +22,12 @@ public class User extends IEntity{
     private List<Role> roles ;
     
     
-	public String getAccountName() {
-		return accountName;
+
+	public String getUserame() {
+		return userame;
 	}
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setUserame(String userame) {
+		this.userame = userame;
 	}
 	public String getPassword() {
 		return password;

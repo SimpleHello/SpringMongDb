@@ -27,7 +27,7 @@ public class GIPSRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
 		// TODO Auto-generated method stub
-		System.out.println(" go here doGetAuthorizationInfo");
+		System.out.println(" go here doGetAuthorizationInfo --------111");
 		User user = AuthUtil.getCurrentUser();
         SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();  
         simpleAuthorInfo.addRoles(getRoles(user));
@@ -73,12 +73,11 @@ public class GIPSRealm extends AuthorizingRealm {
 		// TODO Auto-generated method stub
 		System.out.println(" go here doGetAuthenticationInfo");
 		UsernamePasswordToken token = (UsernamePasswordToken)arg0; 
-        User user = null ;//userService.findByAccountName(token.getUsername()) ;//通过帐号获取用户实例
-
-        if (user != null && ByteSource.Util.bytes(token.getPassword())
-                .equals(ByteSource.Util.bytes(user.getPassword()))) {//用户校验
+		System.out.println(" 登录了:"+token.getUsername());
+        User user = getUser(token.getUsername()) ;//userService.findByAccountName(token.getUsername()) ;//通过帐号获取用户实例
+        if (user != null && ByteSource.Util.bytes(token.getPassword()).equals(ByteSource.Util.bytes(user.getPassword()))) {//用户校验
             setSessionInfo(user);
-            return  new SimpleAuthenticationInfo(user.getAccountName(), user.getPassword(), user.getNickName());   //验证成功之后进行授权
+            return  new SimpleAuthenticationInfo(user.getUserame(), user.getPassword(), user.getNickName());   //验证成功之后进行授权
         }
 
         return null ;
@@ -89,18 +88,38 @@ public class GIPSRealm extends AuthorizingRealm {
 	        Subject sub = SecurityUtils.getSubject();
 	        Session session = sub.getSession();
 
-	        //显示的设置权限和角色，避免下次再去数据库获取，提高效率
-	        List<Role> roles = user.getRoles();
-	        for (int i = 0; i < roles.size(); i++) {
-	            Role role = roles.get(i);
-	            List<Permission> perms = role.getPermissions();
-	            for (Permission permission : perms) {}
-	            role.setPermissions(perms);
-	            roles.set(i,role);
-	        }
-	        user.setRoles(roles);
+//	        //显示的设置权限和角色，避免下次再去数据库获取，提高效率
+//	        List<Role> roles = user.getRoles();
+//	        for (int i = 0; i < roles.size(); i++) {
+//	            Role role = roles.get(i);
+//	            List<Permission> perms = role.getPermissions();
+//	            for (Permission permission : perms) {}
+//	            role.setPermissions(perms);
+//	            roles.set(i,role);
+//	        }
+//	        user.setRoles(roles);
 
 	        session.setAttribute("CURRENT_USER", user);
 	    }
+	 
+	 private User getUser(String name){
+		 Role x = new Role(name);
+		 List<Permission> li = new ArrayList<Permission>();
+		 li.add(new Permission("query","001"));
+		 if("admin".equals(name)){
+			 li.add(new Permission("update","002"));
+			 li.add(new Permission("add","003"));
+			 li.add(new Permission("del","004"));
+		 }
+		 x.setPermissions(li);
+		 User user = new User();
+		 List<Role> lii =  new ArrayList<Role>();
+		 lii.add(x);
+		 user.setRoles(lii);
+		 user.setPassword("123");
+		 user.setNickName(name+"nick");
+		 user.setUserame(name);
+		 return user;
+	 }
 
 }

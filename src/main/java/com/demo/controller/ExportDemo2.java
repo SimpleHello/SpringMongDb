@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.common.ExportController;
 import com.demo.entity.DemoEntity;
@@ -51,9 +52,11 @@ public class ExportDemo2 extends ExportController{
 	}
 	
 	@RequestMapping(value = "/loginsubmit.do", method = RequestMethod.GET)
-	public void loginsubmit(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView loginsubmit(HttpServletRequest request, HttpServletResponse response) {
 		String title = "告警过滤规则";
 		System.out.println("登录成功!:"+title);
+		ModelAndView mav = new ModelAndView("redirect:/res/index2.jsp");
+		return mav;
 	}
 	
 }

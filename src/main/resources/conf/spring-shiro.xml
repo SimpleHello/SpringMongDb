@@ -38,6 +38,7 @@
          <property name="rememberMeManager" ref="rememberMeManager" /> 
     </bean>
 
+    
     <!-- 具体的 路径拦截器，登录验证路径在这里拦截 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -53,7 +54,7 @@
                 /front/** = anon  <!-- 不需要拦截的路径   -->
                 /login/loginsubmit.do = authc <!-- 用 户 必 须 身 份 验 证 通 过 ,将触发doGetAuthenticationInfo -->
                 /login/logout.do = logout <!-- 退出操作 -->
-                /backer/** = user <!--已经登录验证通过或者通过rememberMe  -->
+                /res/** = user <!--已经登录验证通过或者通过rememberMe  -->
             </value>
         </property>
     </bean>

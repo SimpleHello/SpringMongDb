@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="m" uri="/auth-tags" %><!--引入我们的标签-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,6 +52,26 @@
 </select>
 
 <input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()">
+1111111111111------------------:
+           <m:auth privilege="del"> <!--我们自定义标签-->
+                <li >
+                  del
+                </li>
+           </m:auth>
+            <m:auth privilege="query">
+                <li >
+                    query
+                </li>
+            </m:auth>
+            <m:auth privilege="add">
+                <li >
+                   add
+                </li>
+            </m:auth>
+        </ul> 
+    </div>
+
+</body>
 
 </body>
 

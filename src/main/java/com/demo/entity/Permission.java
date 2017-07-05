@@ -19,7 +19,12 @@ public class Permission  extends IEntity{
     private Permission parent ;
     private List<Role> roles ;
     
+    public Permission(){}
     
+    public Permission(String permName,String permCode){
+    	this.permName = permName;
+    	this.permCode = permCode;
+    }
 	public String getPermName() {
 		return permName;
 	}

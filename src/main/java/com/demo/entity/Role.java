@@ -20,6 +20,11 @@ public class Role extends IEntity{
     private List<Permission> permissions ;
     private List<User> users ;
     
+    public Role(){}
+    
+    public Role(String roleName){
+    	this.roleName = roleName;
+    }
     
 	public String getRoleName() {
 		return roleName;
