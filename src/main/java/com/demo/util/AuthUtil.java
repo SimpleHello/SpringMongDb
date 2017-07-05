@@ -6,8 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+
 
 import com.demo.entity.Permission;
 import com.demo.entity.Role;
@@ -18,7 +20,7 @@ public class AuthUtil {
      * 获取当前用户
      * @return
      */
-    public static User  getCurrentUser(){
+    public static User  getCurrentUser(){ 
         Subject sub = SecurityUtils.getSubject();
         Session session = sub.getSession();
         User user = (User) session.getAttribute("CURRENT_USER");

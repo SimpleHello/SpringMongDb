@@ -17,6 +17,7 @@ public class PrivilegeTag  extends TagSupport {
 
     @Override
     public int doStartTag() {
+    	System.out.println("here is PrivilegeTag>doStartTag");
         User user =  AuthUtil.getCurrentUser();//获取登录用户信息
         if(user == null) return SKIP_BODY;
         if (isManager(user)) return EVAL_BODY_INCLUDE;  //超级管理员获取所有权限
@@ -37,7 +38,7 @@ public class PrivilegeTag  extends TagSupport {
         List<Role> roles = user.getRoles();
         boolean b = false ;
         for (Role role : roles) { //遍历是否有超级管理员角色
-            if (role.getIsManager() == 1) {
+            if (role.getIsManager()) {
                 b = true ;
                 break ;
             }

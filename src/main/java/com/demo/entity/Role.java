@@ -15,7 +15,7 @@ public class Role extends IEntity{
 	private String roleName ;
     private String roleDesc ;
     private Byte isDeleted ;
-    private Byte isManager ;
+    private boolean isManager ;
     private Date createTime ;
     private List<Permission> permissions ;
     private List<User> users ;
@@ -44,10 +44,10 @@ public class Role extends IEntity{
 	public void setIsDeleted(Byte isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	public Byte getIsManager() {
+	public boolean getIsManager() {
 		return isManager;
 	}
-	public void setIsManager(Byte isManager) {
+	public void setIsManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 	public Date getCreateTime() {

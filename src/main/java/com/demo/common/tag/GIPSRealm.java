@@ -103,6 +103,7 @@ public class GIPSRealm extends AuthorizingRealm {
 	    }
 	 
 	 private User getUser(String name){
+		 boolean isM = false;
 		 Role x = new Role(name);
 		 List<Permission> li = new ArrayList<Permission>();
 		 li.add(new Permission("query","001"));
@@ -110,7 +111,9 @@ public class GIPSRealm extends AuthorizingRealm {
 			 li.add(new Permission("update","002"));
 			 li.add(new Permission("add","003"));
 			 li.add(new Permission("del","004"));
+			 isM = true;
 		 }
+		 x.setIsManager(isM);
 		 x.setPermissions(li);
 		 User user = new User();
 		 List<Role> lii =  new ArrayList<Role>();

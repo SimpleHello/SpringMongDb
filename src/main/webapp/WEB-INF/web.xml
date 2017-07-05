@@ -76,9 +76,12 @@
      </filter>
     <filter-mapping>
 		<filter-name>shiroFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+  	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
     </filter-mapping>
-  
     <jsp-config>
         <taglib>
             <taglib-uri>/auth-tags</taglib-uri>
