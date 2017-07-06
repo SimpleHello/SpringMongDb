@@ -11,7 +11,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter{
     @Override
    protected boolean onAccessDenied(ServletRequest request, ServletResponse response)
            throws Exception {
-    	System.out.println("到此----");
+    	System.out.println("到此---  xxxx -");
        return super.onAccessDenied(request, response);
    }
 }

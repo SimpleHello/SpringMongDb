@@ -72,7 +72,7 @@
 										type="password" name="password" placeholder="Password..."
 										class="form-password form-control" id="form-password">
 								</div>
-								保存密码<input type = "checkbox" name = "rememberMe" /></label>
+								<!-- 保存密码<input type = "checkbox" name = "rememberMe" /></label> -->
 								<button type="submit" class="btn">Sign in!</button>
 							</form>
 						</div>

@@ -51,8 +51,8 @@
 	<option value="0/9 * * * * ?">9秒 执行一次</option>
 </select>
 
-<input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()">
-1111111111111------------------:
+<input type="button" style='font-size: 15px' value="发送消息" onclick="sendMessage()"></br>
+1111111111111------------------:</br>
            <m:auth privilege="del"> <!--我们自定义标签-->
                 <li >
                   del
@@ -66,6 +66,21 @@
             <m:auth privilege="add">
                 <li >
                    add
+                </li>
+            </m:auth>
+            <m:auth privilege="004"> <!--我们自定义标签-->
+                <li >
+                  del 004
+                </li>
+           </m:auth>
+            <m:auth privilege="001">
+                <li >
+                    query 001
+                </li>
+            </m:auth>
+            <m:auth privilege="003">
+                <li >
+                   add 003
                 </li>
             </m:auth>
         </ul> 

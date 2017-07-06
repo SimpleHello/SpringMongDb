@@ -71,7 +71,7 @@ public class GIPSRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
 		// TODO Auto-generated method stub
-		System.out.println(" go here doGetAuthenticationInfo");
+		System.out.println("----> go here doGetAuthenticationInfo");
 		UsernamePasswordToken token = (UsernamePasswordToken)arg0; 
 		System.out.println(" 登录了:"+token.getUsername());
         User user = getUser(token.getUsername()) ;//userService.findByAccountName(token.getUsername()) ;//通过帐号获取用户实例
@@ -107,10 +107,10 @@ public class GIPSRealm extends AuthorizingRealm {
 		 Role x = new Role(name);
 		 List<Permission> li = new ArrayList<Permission>();
 		 li.add(new Permission("query","001"));
+		 li.add(new Permission("del","004"));
 		 if("admin".equals(name)){
 			 li.add(new Permission("update","002"));
 			 li.add(new Permission("add","003"));
-			 li.add(new Permission("del","004"));
 			 isM = true;
 		 }
 		 x.setIsManager(isM);

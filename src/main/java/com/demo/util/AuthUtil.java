@@ -6,10 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-
 
 import com.demo.entity.Permission;
 import com.demo.entity.Role;

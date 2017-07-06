@@ -35,7 +35,7 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="gipsRealm" />
         <property name="cacheManager" ref="cacheManager" /> 
-         <property name="rememberMeManager" ref="rememberMeManager" /> 
+        <property name="rememberMeManager" ref="rememberMeManager" /> 
     </bean>
 
     
